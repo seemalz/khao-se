@@ -3,391 +3,658 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Khao Se — Toronto Catering</title>
+  <title>Khao Se To — Southeast Asian Catering · Toronto</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold: #c8a45e;
-      --gold-light: #e8d5a3;
-      --dark: #1a1a1a;
-      --darker: #0f0f0f;
-      --cream: #faf6ee;
-      --text: #e8e4dc;
-      --text-muted: #9a958b;
+      --spice: #d4793a;
+      --spice-light: #e8a96c;
+      --turmeric: #d4a843;
+      --dark: #111110;
+      --dark2: #1a1917;
+      --dark3: #232220;
+      --cream: #f5f0e8;
+      --warm-white: #ede7db;
+      --text: #d6d0c4;
+      --text-muted: #8a847a;
+      --overlay: rgba(17,17,16,0.55);
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--darker);
+      font-family: 'Manrope', sans-serif;
+      background: var(--dark);
       color: var(--text);
       line-height: 1.7;
       overflow-x: hidden;
     }
 
+    /* UTILITY */
+    .container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
     /* NAV */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
-      padding: 1.5rem 3rem;
+      padding: 1.2rem 3rem;
       display: flex; justify-content: space-between; align-items: center;
-      background: rgba(15,15,15,0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(200,164,94,0.1);
-      transition: all 0.3s;
+      background: rgba(17,17,16,0.9);
+      backdrop-filter: blur(30px);
+      border-bottom: 1px solid rgba(212,121,58,0.08);
     }
     .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem; font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 2px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--cream); letter-spacing: 1px;
     }
-    .logo span { color: var(--text); font-weight: 400; }
+    .logo em { color: var(--spice); font-style: normal; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
       color: var(--text-muted); text-decoration: none;
-      font-size: 0.85rem; font-weight: 500;
-      letter-spacing: 1.5px; text-transform: uppercase;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 1.8px; text-transform: uppercase;
       transition: color 0.3s;
     }
-    .nav-links a:hover { color: var(--gold); }
-
-    /* HERO */
-    .hero {
-      height: 100vh; display: flex; flex-direction: column;
-      justify-content: center; align-items: center; text-align: center;
-      position: relative;
-      background: radial-gradient(ellipse at center, rgba(200,164,94,0.06) 0%, transparent 70%);
+    .nav-links a:hover { color: var(--spice); }
+    .nav-book {
+      padding: 0.6rem 1.8rem;
+      background: var(--spice); color: var(--dark) !important;
+      font-weight: 700 !important; border-radius: 0;
     }
-    .hero::before {
+    .nav-book:hover { background: var(--spice-light) !important; }
+
+    /* ====== HERO ====== */
+    .hero {
+      height: 100vh; position: relative;
+      display: flex; align-items: flex-end;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=1800&q=80') center/cover no-repeat;
+    }
+    .hero-bg::after {
       content: ''; position: absolute; inset: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="none" stroke="rgba(200,164,94,0.04)" stroke-width="0.3"/><circle cx="50" cy="50" r="35" fill="none" stroke="rgba(200,164,94,0.03)" stroke-width="0.3"/></svg>') center/600px no-repeat;
+      background: linear-gradient(to top, var(--dark) 0%, rgba(17,17,16,0.4) 40%, rgba(17,17,16,0.2) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 3rem 6rem;
+      max-width: 800px;
     }
     .hero-tag {
-      font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 2rem;
-      opacity: 0; animation: fadeUp 1s 0.3s forwards;
+      display: inline-block;
+      font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--spice); margin-bottom: 1.5rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid rgba(212,121,58,0.3);
+      opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
     }
     .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 8vw, 7rem); font-weight: 700;
-      color: var(--cream); line-height: 1.1;
-      opacity: 0; animation: fadeUp 1s 0.5s forwards;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 700; color: var(--cream);
+      line-height: 1.05; margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
     }
-    .hero h1 em {
-      font-style: italic; color: var(--gold);
-    }
+    .hero h1 em { font-style: italic; color: var(--spice-light); }
     .hero-sub {
-      font-size: 1.15rem; color: var(--text-muted);
-      max-width: 500px; margin-top: 1.5rem; font-weight: 300;
-      opacity: 0; animation: fadeUp 1s 0.7s forwards;
+      font-size: 1.1rem; color: var(--text);
+      max-width: 550px; font-weight: 300;
+      opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
     }
     .hero-cta {
-      margin-top: 3rem; display: flex; gap: 1.5rem;
-      opacity: 0; animation: fadeUp 1s 0.9s forwards;
+      display: flex; gap: 1rem; margin-top: 2.5rem;
+      opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
     }
     .btn {
-      padding: 0.9rem 2.5rem; border: none; cursor: pointer;
-      font-family: 'Inter', sans-serif; font-size: 0.8rem;
+      padding: 1rem 2.5rem; border: none; cursor: pointer;
+      font-family: 'Manrope', sans-serif; font-size: 0.78rem;
       letter-spacing: 2px; text-transform: uppercase;
-      text-decoration: none; transition: all 0.3s;
+      text-decoration: none; transition: all 0.3s; font-weight: 700;
     }
-    .btn-primary {
-      background: var(--gold); color: var(--darker);
-      font-weight: 600;
-    }
-    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .btn-outline {
-      background: transparent; color: var(--gold);
-      border: 1px solid rgba(200,164,94,0.4);
-    }
-    .btn-outline:hover { border-color: var(--gold); background: rgba(200,164,94,0.05); }
+    .btn-primary { background: var(--spice); color: var(--dark); }
+    .btn-primary:hover { background: var(--spice-light); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: var(--cream); border: 1px solid rgba(255,255,255,0.2); }
+    .btn-ghost:hover { border-color: var(--spice); color: var(--spice); }
 
-    .scroll-hint {
-      position: absolute; bottom: 3rem;
-      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      color: var(--text-muted); font-size: 0.7rem; letter-spacing: 2px;
-      animation: pulse 2s infinite;
+    /* ====== MARQUEE ====== */
+    .marquee-wrap {
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(212,121,58,0.1);
+      border-bottom: 1px solid rgba(212,121,58,0.1);
+      overflow: hidden;
+      background: var(--dark2);
     }
-    .scroll-hint span { width: 1px; height: 40px; background: var(--gold); opacity: 0.4; }
-
-    /* SECTIONS */
-    section { padding: 8rem 3rem; max-width: 1200px; margin: 0 auto; }
-
-    .section-tag {
-      font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1rem;
+    .marquee {
+      display: flex; gap: 3rem;
+      animation: scroll 20s linear infinite;
+      width: max-content;
     }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3.2rem); color: var(--cream);
-      margin-bottom: 1.5rem;
+    .marquee span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; color: var(--text-muted);
+      white-space: nowrap; letter-spacing: 2px;
     }
+    .marquee span em { color: var(--spice); font-style: normal; margin: 0 0.5rem; }
 
-    /* ABOUT */
+    /* ====== ABOUT ====== */
+    .about { padding: 8rem 0; }
     .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem;
       align-items: center;
     }
-    .about-text p { color: var(--text-muted); margin-bottom: 1.5rem; font-weight: 300; }
-    .about-stats {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem;
+    .about-images {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      height: 550px;
     }
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem; color: var(--gold);
+    .about-img-tall {
+      grid-row: 1 / 3; border-radius: 2px; overflow: hidden;
+      position: relative;
     }
-    .stat-label { font-size: 0.8rem; color: var(--text-muted); letter-spacing: 1px; }
-    .about-image {
-      aspect-ratio: 4/5; background: var(--dark);
-      border: 1px solid rgba(200,164,94,0.15);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 4rem; color: rgba(200,164,94,0.15);
-      position: relative; overflow: hidden;
+    .about-img-sq {
+      border-radius: 2px; overflow: hidden; position: relative;
     }
-    .about-image::after {
-      content: ''; position: absolute; inset: 1rem;
-      border: 1px solid rgba(200,164,94,0.08);
+    .about-img-tall::after, .about-img-sq::after {
+      content: ''; position: absolute; inset: 0;
+      border: 1px solid rgba(212,121,58,0.1);
+    }
+    .section-tag {
+      font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--spice); margin-bottom: 1.2rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      color: var(--cream); line-height: 1.15; margin-bottom: 1.5rem;
+    }
+    .about-text p { color: var(--text-muted); margin-bottom: 1.2rem; font-weight: 300; font-size: 1rem; }
+    .about-text p strong { color: var(--cream); font-weight: 600; }
+    .about-highlight {
+      margin-top: 2rem; padding: 1.5rem 2rem;
+      border-left: 3px solid var(--spice);
+      background: rgba(212,121,58,0.04);
+    }
+    .about-highlight p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; color: var(--cream); font-style: italic;
+      margin: 0;
     }
 
-    /* MENU */
-    .menu-section { text-align: center; }
+    /* ====== PHOTO STRIP ====== */
+    .photo-strip {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      height: 400px; gap: 3px;
+    }
+    .photo-strip > div { overflow: hidden; position: relative; }
+    .photo-strip > div::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--overlay);
+      transition: background 0.4s;
+    }
+    .photo-strip > div:hover::after { background: rgba(17,17,16,0.2); }
+    .photo-strip .photo-label {
+      position: absolute; bottom: 1.5rem; left: 1.5rem; z-index: 2;
+      font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--cream);
+    }
+
+    /* ====== MENU ====== */
+    .menu { padding: 8rem 0; }
+    .menu-header { text-align: center; margin-bottom: 4rem; }
     .menu-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;
-      margin-top: 4rem;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
     }
     .menu-card {
-      padding: 3rem 2rem;
-      background: rgba(26,26,26,0.6);
-      border: 1px solid rgba(200,164,94,0.1);
-      transition: all 0.4s;
+      position: relative; overflow: hidden;
+      height: 420px; cursor: pointer;
     }
-    .menu-card:hover {
-      border-color: rgba(200,164,94,0.3);
-      transform: translateY(-5px);
+    .menu-card img { transition: transform 0.6s; }
+    .menu-card:hover img { transform: scale(1.05); }
+    .menu-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(17,17,16,0.9) 0%, rgba(17,17,16,0.1) 60%);
     }
-    .menu-icon { font-size: 2.5rem; margin-bottom: 1.5rem; }
+    .menu-card-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2rem; z-index: 2;
+    }
     .menu-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem; color: var(--cream); margin-bottom: 0.8rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; color: var(--cream); margin-bottom: 0.5rem;
     }
-    .menu-card p { color: var(--text-muted); font-size: 0.9rem; font-weight: 300; }
+    .menu-card p { color: var(--text-muted); font-size: 0.88rem; font-weight: 300; }
 
-    /* TESTIMONIALS */
-    .testimonials { text-align: center; }
-    .testimonial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 4rem; }
-    .testimonial {
-      padding: 2.5rem; text-align: left;
-      background: rgba(26,26,26,0.4);
-      border-left: 2px solid var(--gold);
+    /* ====== TORONTO SECTION ====== */
+    .toronto {
+      padding: 8rem 0; position: relative;
     }
-    .testimonial p {
-      font-size: 1.05rem; color: var(--text-muted);
-      font-style: italic; font-weight: 300; margin-bottom: 1.5rem;
+    .toronto-grid {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem;
+      align-items: center;
     }
-    .testimonial .author { color: var(--gold); font-size: 0.85rem; font-weight: 500; }
+    .toronto-img {
+      height: 500px; border-radius: 2px; overflow: hidden; position: relative;
+    }
+    .toronto-img::after {
+      content: ''; position: absolute; inset: 0;
+      border: 1px solid rgba(212,121,58,0.1);
+    }
+    .toronto-text .stat-row {
+      display: flex; gap: 3rem; margin-top: 2.5rem;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; color: var(--spice);
+    }
+    .stat-label {
+      font-size: 0.75rem; color: var(--text-muted);
+      letter-spacing: 1.5px; text-transform: uppercase;
+    }
 
-    /* CONTACT */
-    .contact { text-align: center; }
-    .contact-info {
-      display: flex; justify-content: center; gap: 4rem; margin-top: 3rem;
-      flex-wrap: wrap;
+    /* ====== TESTIMONIALS ====== */
+    .reviews { padding: 8rem 0; background: var(--dark2); }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+      margin-top: 4rem;
     }
-    .contact-item h4 {
-      font-family: 'Playfair Display', serif;
-      color: var(--gold); margin-bottom: 0.5rem;
-    }
-    .contact-item p { color: var(--text-muted); font-size: 0.9rem; }
-    .contact-form {
-      max-width: 600px; margin: 3rem auto 0;
-      display: flex; flex-direction: column; gap: 1rem;
-    }
-    .contact-form input, .contact-form textarea {
-      padding: 1rem 1.5rem; background: rgba(26,26,26,0.8);
-      border: 1px solid rgba(200,164,94,0.15); color: var(--text);
-      font-family: 'Inter', sans-serif; font-size: 0.9rem;
+    .review-card {
+      padding: 2.5rem;
+      background: var(--dark);
+      border: 1px solid rgba(212,121,58,0.08);
       transition: border-color 0.3s;
     }
-    .contact-form input:focus, .contact-form textarea:focus {
-      outline: none; border-color: var(--gold);
+    .review-card:hover { border-color: rgba(212,121,58,0.25); }
+    .review-stars { color: var(--spice); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 2px; }
+    .review-card p {
+      font-size: 0.95rem; color: var(--text-muted);
+      font-style: italic; font-weight: 300; margin-bottom: 1.5rem;
+      line-height: 1.8;
     }
-    .contact-form textarea { min-height: 120px; resize: vertical; }
+    .review-author { display: flex; align-items: center; gap: 1rem; }
+    .review-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--dark3); display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; color: var(--spice);
+    }
+    .review-name { font-size: 0.85rem; color: var(--cream); font-weight: 600; }
+    .review-role { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* ====== CTA BANNER ====== */
+    .cta-banner {
+      position: relative; height: 500px;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+    }
+    .cta-banner-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1800&q=80') center/cover no-repeat;
+    }
+    .cta-banner-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(17,17,16,0.75);
+    }
+    .cta-content {
+      position: relative; z-index: 2;
+      max-width: 600px;
+    }
+    .cta-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--cream); margin-bottom: 1rem;
+    }
+    .cta-content p { color: var(--text-muted); margin-bottom: 2.5rem; font-weight: 300; }
+
+    /* ====== CONTACT ====== */
+    .contact { padding: 8rem 0; }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    }
+    .contact-info h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; color: var(--cream); margin-bottom: 0.5rem; margin-top: 2rem;
+    }
+    .contact-info h3:first-child { margin-top: 0; }
+    .contact-info p { color: var(--text-muted); font-size: 0.9rem; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-form input, .contact-form textarea {
+      padding: 1rem 1.5rem;
+      background: var(--dark2);
+      border: 1px solid rgba(212,121,58,0.1);
+      color: var(--text);
+      font-family: 'Manrope', sans-serif; font-size: 0.9rem;
+      transition: border-color 0.3s; border-radius: 0;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none; border-color: var(--spice);
+    }
+    .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--text-muted); }
+    .contact-form textarea { min-height: 140px; resize: vertical; }
 
     /* FOOTER */
     footer {
       padding: 3rem; text-align: center;
-      border-top: 1px solid rgba(200,164,94,0.1);
-      color: var(--text-muted); font-size: 0.8rem;
+      border-top: 1px solid rgba(212,121,58,0.08);
     }
-    footer .logo { margin-bottom: 1rem; display: inline-block; }
+    footer .logo { display: inline-block; margin-bottom: 0.8rem; }
+    footer p { color: var(--text-muted); font-size: 0.78rem; }
+    footer .social { margin: 1rem 0; }
+    footer .social a {
+      color: var(--text-muted); text-decoration: none;
+      margin: 0 1rem; font-size: 0.8rem; letter-spacing: 1px;
+      transition: color 0.3s;
+    }
+    footer .social a:hover { color: var(--spice); }
 
     /* ANIMATIONS */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
     }
 
+    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.8s, transform 0.8s;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
     /* MOBILE */
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
-      section { padding: 5rem 1.5rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .about-image { display: none; }
+      .hero-content { padding: 0 1.5rem 4rem; }
+      .about-grid, .toronto-grid, .contact-grid { grid-template-columns: 1fr; }
+      .about-images { height: 350px; }
+      .photo-strip { grid-template-columns: 1fr 1fr; height: 300px; }
       .menu-grid { grid-template-columns: 1fr; }
-      .testimonial-grid { grid-template-columns: 1fr; }
-      .contact-info { flex-direction: column; gap: 2rem; }
-      .hero-cta { flex-direction: column; align-items: center; }
+      .menu-card { height: 300px; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .hero-cta { flex-direction: column; }
+      section, .about, .menu, .toronto, .contact { padding: 5rem 0; }
+    }
+    @media (max-width: 600px) {
+      .about-images { grid-template-columns: 1fr; height: auto; }
+      .about-img-tall { grid-row: auto; height: 300px; }
+      .about-img-sq { height: 200px; }
+      .photo-strip { grid-template-columns: 1fr; height: auto; }
+      .photo-strip > div { height: 250px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- NAV -->
   <nav>
-    <div class="logo">KHAO <span>SE</span></div>
+    <div class="logo">Khao Se <em>To</em></div>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
+      <li><a href="#about">Story</a></li>
       <li><a href="#menu">Menu</a></li>
+      <li><a href="#toronto">Toronto</a></li>
       <li><a href="#reviews">Reviews</a></li>
-      <li><a href="#contact">Book Now</a></li>
+      <li><a href="#contact" class="nav-book">Book</a></li>
     </ul>
   </nav>
 
+  <!-- HERO -->
   <section class="hero">
-    <p class="hero-tag">Toronto's Finest Catering Experience</p>
-    <h1>Food That<br>Tells a <em>Story</em></h1>
-    <p class="hero-sub">Bold Southeast Asian flavours, crafted with soul. From intimate dinners to grand celebrations — we bring the feast to you.</p>
-    <div class="hero-cta">
-      <a href="#contact" class="btn btn-primary">Book Your Event</a>
-      <a href="#menu" class="btn btn-outline">Explore Menu</a>
-    </div>
-    <div class="scroll-hint">
-      <span></span>
-      SCROLL
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Southeast Asian Catering · Toronto</div>
+      <h1>Where Flavour<br>Meets <em>Soul</em></h1>
+      <p class="hero-sub">Bold, aromatic Southeast Asian cuisine — crafted by hand, served with heart. From intimate gatherings to unforgettable celebrations across the GTA.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Book Your Event</a>
+        <a href="#menu" class="btn btn-ghost">See the Menu</a>
+      </div>
     </div>
   </section>
 
-  <section id="about">
-    <div class="about-grid">
-      <div class="about-text">
-        <p class="section-tag">Our Story</p>
-        <h2 class="section-title">Born from Passion,<br>Served with Love</h2>
-        <p>Khao Se was founded by Jojo and Nabiha — two friends with a shared obsession for bold, aromatic flavours rooted in Southeast Asian tradition. What started as cooking for friends quickly became Toronto's most talked-about catering experience.</p>
-        <p>Every dish is a conversation between heritage and creativity. We source locally, cook from scratch, and believe that food should do more than fill you up — it should move you.</p>
-        <div class="about-stats">
-          <div>
-            <div class="stat-num">500+</div>
-            <div class="stat-label">Events Catered</div>
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <span>Weddings <em>✦</em> Corporate Events <em>✦</em> Private Dinners <em>✦</em> Pop-Ups <em>✦</em> Birthdays <em>✦</em> Festivals <em>✦</em> Holiday Parties <em>✦</em> Film Sets <em>✦</em> Weddings <em>✦</em> Corporate Events <em>✦</em> Private Dinners <em>✦</em> Pop-Ups <em>✦</em> Birthdays <em>✦</em> Festivals <em>✦</em> Holiday Parties <em>✦</em> Film Sets</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid reveal">
+        <div class="about-images">
+          <div class="about-img-tall">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80" alt="Beautifully plated Southeast Asian dish">
           </div>
-          <div>
-            <div class="stat-num">Toronto</div>
-            <div class="stat-label">Based & Proud</div>
+          <div class="about-img-sq">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Elegant dining setup">
+          </div>
+          <div class="about-img-sq">
+            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&q=80" alt="Chef preparing food">
+          </div>
+        </div>
+        <div class="about-text">
+          <p class="section-tag">Our Story</p>
+          <h2 class="section-title">Two Friends.<br>One Kitchen.<br>Endless Flavour.</h2>
+          <p><strong>Jojo and Nabiha</strong> started Khao Se To the way all great things start — feeding their friends. What began as weekend cookouts and potluck takeovers turned into something bigger: a catering company built on the belief that food should make people feel something.</p>
+          <p>Rooted in Southeast Asian tradition and shaped by Toronto's melting pot, every dish tells a story — of late-night recipe experiments, of grandmothers' kitchens, of markets in Bangkok and Yangon and Kuala Lumpur. This is food that remembers where it came from.</p>
+          <div class="about-highlight">
+            <p>"We don't just cater events — we create the moment everyone gathers around."</p>
           </div>
         </div>
       </div>
-      <div class="about-image">🍜</div>
     </div>
   </section>
 
-  <section id="menu" class="menu-section">
-    <p class="section-tag">What We Serve</p>
-    <h2 class="section-title">A Taste of What's Possible</h2>
-    <div class="menu-grid">
-      <div class="menu-card">
-        <div class="menu-icon">🥘</div>
-        <h3>Signature Curries</h3>
-        <p>Rich, layered, unforgettable. From coconut-based Burmese classics to fiery Thai-inspired creations — always made from scratch.</p>
+  <!-- PHOTO STRIP -->
+  <div class="photo-strip reveal">
+    <div>
+      <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&q=80" alt="Thai curry dish">
+      <span class="photo-label">Signature Curries</span>
+    </div>
+    <div>
+      <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&q=80" alt="Fresh noodle bowl">
+      <span class="photo-label">Hand-Crafted Noodles</span>
+    </div>
+    <div>
+      <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Fresh ingredients">
+      <span class="photo-label">Fresh & Local</span>
+    </div>
+    <div>
+      <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&q=80" alt="Colourful platter">
+      <span class="photo-label">The Full Spread</span>
+    </div>
+  </div>
+
+  <!-- MENU -->
+  <section class="menu" id="menu">
+    <div class="container">
+      <div class="menu-header reveal">
+        <p class="section-tag">What We Serve</p>
+        <h2 class="section-title">Built for Sharing</h2>
       </div>
-      <div class="menu-card">
-        <div class="menu-icon">🥢</div>
-        <h3>Noodle Stations</h3>
-        <p>Interactive live stations with hand-pulled noodles, fresh toppings, and broths that take days to develop their depth.</p>
-      </div>
-      <div class="menu-card">
-        <div class="menu-icon">🥗</div>
-        <h3>Fresh & Light</h3>
-        <p>Vibrant salads, pickled vegetables, and herbaceous sides that bring balance and brightness to every spread.</p>
-      </div>
-      <div class="menu-card">
-        <div class="menu-icon">🫕</div>
-        <h3>Family Style Feasts</h3>
-        <p>Communal platters designed to be shared — because the best meals are the ones where everyone reaches across the table.</p>
-      </div>
-      <div class="menu-card">
-        <div class="menu-icon">🍢</div>
-        <h3>Small Bites & Apps</h3>
-        <p>Skewers, dumplings, spring rolls, and satay. Perfect for cocktail hours and events where you want people mingling.</p>
-      </div>
-      <div class="menu-card">
-        <div class="menu-icon">🍮</div>
-        <h3>Sweets & Desserts</h3>
-        <p>Pandan, coconut, mango — Southeast Asian desserts that surprise and delight, from traditional to modern.</p>
+      <div class="menu-grid reveal">
+        <div class="menu-card">
+          <img src="https://images.unsplash.com/photo-1548943487-a2e4e43b4853?w=700&q=80" alt="Curry bowls">
+          <div class="menu-card-content">
+            <h3>Curries & Stews</h3>
+            <p>Rich coconut curries, Burmese-inspired stews, and slow-cooked braises that fill the room with warmth.</p>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img src="https://images.unsplash.com/photo-1552611052-33e04de1b100?w=700&q=80" alt="Noodle station">
+          <div class="menu-card-content">
+            <h3>Live Noodle Stations</h3>
+            <p>Interactive stations with fresh noodles, rich broths, and a garden of toppings. Always the star of the event.</p>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img src="https://images.unsplash.com/photo-1606491956689-2ea866880049?w=700&q=80" alt="Small bites">
+          <div class="menu-card-content">
+            <h3>Small Bites</h3>
+            <p>Satay, spring rolls, dumplings, and skewers — perfect for mingling, perfect for starting conversations.</p>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=700&q=80" alt="Rice platters">
+          <div class="menu-card-content">
+            <h3>Family Platters</h3>
+            <p>Communal-style feasts with fragrant rice, grilled proteins, pickled sides — designed for reaching across the table.</p>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=700&q=80" alt="Desserts">
+          <div class="menu-card-content">
+            <h3>Desserts</h3>
+            <p>Pandan, coconut, mango sticky rice, and modern twists on Southeast Asian classics. Sweet endings guaranteed.</p>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=700&q=80" alt="Custom menu">
+          <div class="menu-card-content">
+            <h3>Custom Menus</h3>
+            <p>Your event, your vision. We'll work with you to build a menu that fits your guests, vibe, and budget perfectly.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="reviews" class="testimonials">
-    <p class="section-tag">Kind Words</p>
-    <h2 class="section-title">What People Are Saying</h2>
-    <div class="testimonial-grid">
-      <div class="testimonial">
-        <p>"Khao Se catered our wedding and honestly it was the thing guests talked about most. The food was absolutely incredible — bold flavours, beautiful presentation, and Jojo and Nabiha were a dream to work with."</p>
-        <div class="author">— Wedding Client, Toronto</div>
-      </div>
-      <div class="testimonial">
-        <p>"We've used Khao Se for three corporate events now. Every single time, people are blown away. The noodle station alone is worth the booking."</p>
-        <div class="author">— Corporate Event Manager</div>
-      </div>
-      <div class="testimonial">
-        <p>"They turned my birthday into a full-on food experience. My friends still text me about those dumplings. Not even joking."</p>
-        <div class="author">— Private Event, Scarborough</div>
-      </div>
-      <div class="testimonial">
-        <p>"As someone who grew up eating Southeast Asian food — this is the real deal. Authentic flavours with a creative twist. Toronto is lucky to have them."</p>
-        <div class="author">— Food Blogger</div>
+  <!-- TORONTO -->
+  <section class="toronto" id="toronto">
+    <div class="container">
+      <div class="toronto-grid reveal">
+        <div class="toronto-text">
+          <p class="section-tag">Proudly Local</p>
+          <h2 class="section-title">Made in Toronto.<br>Inspired by<br>Everywhere.</h2>
+          <p style="color: var(--text-muted); font-weight: 300; margin-bottom: 1rem;">Toronto is one of the most diverse food cities on the planet — and Khao Se To is a product of that energy. We source from local farms and markets, collaborate with Toronto's creative community, and bring our food to neighbourhoods across the GTA.</p>
+          <p style="color: var(--text-muted); font-weight: 300;">From Kensington Market pop-ups to Yorkville dinner parties, Scarborough birthdays to downtown corporate events — wherever the city gathers, we'll be there.</p>
+          <div class="stat-row">
+            <div>
+              <div class="stat-num">500+</div>
+              <div class="stat-label">Events Served</div>
+            </div>
+            <div>
+              <div class="stat-num">GTA</div>
+              <div class="stat-label">Wide Service</div>
+            </div>
+            <div>
+              <div class="stat-num">100%</div>
+              <div class="stat-label">Scratch-Made</div>
+            </div>
+          </div>
+        </div>
+        <div class="toronto-img">
+          <img src="https://images.unsplash.com/photo-1517090504332-af41d671be4e?w=900&q=80" alt="Toronto skyline">
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="contact">
-    <p class="section-tag">Let's Talk</p>
-    <h2 class="section-title">Ready to Make It Happen?</h2>
-    <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;">Tell us about your event — big or small, formal or laid-back. We'll craft something unforgettable together.</p>
-    <div class="contact-info">
-      <div class="contact-item">
-        <h4>Location</h4>
-        <p>Toronto, Ontario</p>
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div style="text-align: center;" class="reveal">
+        <p class="section-tag">What People Say</p>
+        <h2 class="section-title">The Food Speaks for Itself</h2>
       </div>
-      <div class="contact-item">
-        <h4>Email</h4>
-        <p>hello@khaose.ca</p>
-      </div>
-      <div class="contact-item">
-        <h4>Social</h4>
-        <p>@khaose.to</p>
+      <div class="reviews-grid reveal">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>"Khao Se To catered our wedding and honestly — the food was what everyone talked about. Not the dress, not the venue. The food. Jojo and Nabiha absolutely nailed it."</p>
+          <div class="review-author">
+            <div class="review-avatar">S</div>
+            <div>
+              <div class="review-name">Sarah & Marcus</div>
+              <div class="review-role">Wedding, Distillery District</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>"We've booked them for three corporate events now. The noodle station alone gets people talking for weeks. Professional, creative, and genuinely warm people."</p>
+          <div class="review-author">
+            <div class="review-avatar">R</div>
+            <div>
+              <div class="review-name">Rachel K.</div>
+              <div class="review-role">Events Manager, Tech Co.</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p>"My mom said it reminded her of home. That's the highest compliment you can get. These two know what they're doing — the flavours are legit and the presentation is gorgeous."</p>
+          <div class="review-author">
+            <div class="review-avatar">A</div>
+            <div>
+              <div class="review-name">Amir T.</div>
+              <div class="review-role">Birthday Party, Scarborough</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! We\'ll be in touch soon.');">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <input type="text" placeholder="Event Date & Type">
-      <textarea placeholder="Tell us about your event..."></textarea>
-      <button type="submit" class="btn btn-primary" style="align-self: center;">Send Inquiry</button>
-    </form>
   </section>
 
+  <!-- CTA BANNER -->
+  <div class="cta-banner">
+    <div class="cta-banner-bg"></div>
+    <div class="cta-content reveal">
+      <p class="section-tag">Ready?</p>
+      <h2>Let's Make Your<br>Event Unforgettable</h2>
+      <p>Whether it's 20 guests or 200 — we'll bring the heat.</p>
+      <a href="#contact" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid reveal">
+        <div class="contact-info">
+          <p class="section-tag">Book Us</p>
+          <h2 class="section-title">Let's Plan<br>Something Great</h2>
+          <p style="color: var(--text-muted); font-weight: 300;">Tell us about your event and we'll get back to you within 24 hours with ideas, pricing, and next steps.</p>
+          <h3>📍 Based In</h3>
+          <p>Toronto, Ontario · Serving the GTA</p>
+          <h3>📧 Email</h3>
+          <p>hello@khaoseto.ca</p>
+          <h3>📱 Follow Us</h3>
+          <p>@khaoseto</p>
+        </div>
+        <form class="contact-form" onsubmit="event.preventDefault(); this.innerHTML='<p style=\'text-align:center;padding:3rem;color:var(--spice);font-family:Cormorant Garamond,serif;font-size:1.5rem;\'>Thank you! We\'ll be in touch soon. 🙏</p>';">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Email" required>
+          <input type="text" placeholder="Event Date">
+          <input type="text" placeholder="Guest Count">
+          <textarea placeholder="Tell us about your event — type, vibe, dietary needs, anything..."></textarea>
+          <button type="submit" class="btn btn-primary">Send Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    <div class="logo">KHAO <span>SE</span></div>
-    <p>© 2026 Khao Se Catering · Toronto, Canada</p>
+    <div class="logo">Khao Se <em>To</em></div>
+    <div class="social">
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">Email</a>
+    </div>
+    <p>© 2026 Khao Se To · Toronto, Canada · Crafted with love by Jojo & Nabiha</p>
   </footer>
+
+  <!-- SCROLL REVEAL -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
